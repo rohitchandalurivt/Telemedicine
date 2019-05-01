@@ -90,6 +90,15 @@ Copyright © 2019 Rohit Kumar Chandaluri. All rights reserved.
                                     <h:link outcome="/userFile/ListUserFiles" class="standardText" >
                                         <i class="fas fa-file-alt"></i>&nbsp;My Files
                                     </h:link>
+                                    
+                                    <!-- 
+                                ================================================
+                                Selecting "Doctor Search" displays a Dialog Box
+                                ================================================
+                                -->
+                                <h:link onclick="PF('DoctorSearchDialog').show();return false;" class="standardText">
+                                    <i class="fas fa-search"></i>&nbsp;Doctor Search
+                                </h:link>
 
                                     <!-- Clicking "My Account" displays the Profile.xhtml file -->
                                     <h:link outcome="/userAccount/Profile" class="standardText">
@@ -133,6 +142,11 @@ Copyright © 2019 Rohit Kumar Chandaluri. All rights reserved.
 
         </h:form>
 
+        <!-- 
+        Selecting the 'Doctor Search' menu option displays the included 
+        Dialog.xhtml file in a dialog box on top of the currently displayed page. 
+        -->
+        <ui:include src="/search/Dialog.xhtml"/>
     </ui:composition>
     <!-- Do not enter tags before the composition line since they are ignored by JSF -->
 
