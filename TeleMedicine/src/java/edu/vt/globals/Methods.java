@@ -4,6 +4,7 @@
  */
 package edu.vt.globals;
 
+import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -87,7 +88,12 @@ public final class Methods {
     public static Map sessionMap() {
         return FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
     }
-    
+
+    public static Object getJsonObject(Class classname, String jsonString) {
+        Gson gson = new Gson();
+        return gson.fromJson(jsonString, classname);
+    }
+
     /**
      * Return the content of a given URL as String
      *
@@ -95,6 +101,7 @@ public final class Methods {
      * @return JSON data from the given URL as String
      * @throws Exception
      */
+
     public static String readUrlContent(String webServiceURL) throws Exception {
         /*
         reader is an object reference pointing to an object instantiated from the BufferedReader class.
@@ -139,6 +146,7 @@ public final class Methods {
         try {
            // System.out.println("connecting started ");
             // Create a URL object from the webServiceURL given
+            System.out.println("2");
             URL url = new URL(webServiceURL);
             //System.out.println("opening started ");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -162,6 +170,18 @@ public final class Methods {
             The BufferedReader class reads text from a character-input stream, buffering characters
             so as to provide for the efficient reading of characters, arrays, and lines.
              */
+            System.out.println("3");
+
+            reader = new BufferedReader(new InputStreamReader(url.openStream()));
+            System.out.println("4");
+
+            // Create a mutable sequence of characters and store its object reference into buffer
+            StringBuilder buffer = new StringBuilder();
+            System.out.println("5");
+
+            // Create an array of characters of size 10240
+            char[] chars = new char[10240];
+            System.out.println("6");
             //reader = new BufferedReader(new InputStreamReader(url.openStream()));
 
             // Create a mutable sequence of characters and store its object reference into buffer
@@ -170,7 +190,7 @@ public final class Methods {
             // Create an array of characters of size 10240
             //char[] chars = new char[10240];
 
-            //int numberOfCharactersRead;
+            int numberOfCharactersRead;
             /*
             The read(chars) method of the reader object instantiated from the BufferedReader class
             reads 10240 characters as defined by "chars" into a portion of a buffered array.
@@ -186,6 +206,11 @@ public final class Methods {
             If the first read on the underlying stream returns -1 to indicate end-of-file then the read(chars) method returns -1.
             Otherwise the read(chars) method returns the number of characters actually read.
              */
+            System.out.println("7");
+
+            while ((numberOfCharactersRead = reader.read(chars)) != -1) {
+                buffer.append(chars, 0, numberOfCharactersRead);
+            }
             //while ((numberOfCharactersRead = reader.read(chars)) != -1) {
             //    buffer.append(chars, 0, numberOfCharactersRead);
            //}
@@ -193,11 +218,16 @@ public final class Methods {
             // Return the String representation of the created buffer
             return response.toString();
 
+        } catch (Exception e) {
+            //  Block of code to handle errors
+            System.out.println(e.getMessage());
+
         } finally {
             if (reader != null) {
                 reader.close();
             }
         }
+        return "";
     }
 
 }

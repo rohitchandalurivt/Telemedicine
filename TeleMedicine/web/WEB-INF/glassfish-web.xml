@@ -43,6 +43,6 @@ This file is used to configure a web application (WAR file).
     Windows OS: Specify the DocRoot absolute path starting with C:
     <property name="alternatedocroot_1" value="from=/TeleMedicine/* dir=C:/Users/Rohit/DocRoot" />
   -->
-  <property name="alternatedocroot_1" value="from=/TeleMedicine/* dir=C:/Users/Rohit/DocRoot" />
+  <property name="alternatedocroot_1" value="from=/TeleMedicine/* dir=/Users/riteshbansal/DocRoot" />
   <!--<property name="alternatedocroot_1" value="from=/TeleMedicine/* dir=/home/cloudsd/Chandaluri/DocRoot" />-->
 </glassfish-web-app>
