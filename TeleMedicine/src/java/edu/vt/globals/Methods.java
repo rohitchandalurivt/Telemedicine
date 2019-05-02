@@ -101,95 +101,81 @@ public final class Methods {
      * @return JSON data from the given URL as String
      * @throws Exception
      */
-
     public static String readUrlContent(String webServiceURL) throws Exception {
         /*
         reader is an object reference pointing to an object instantiated from the BufferedReader class.
         Initially, it is "null" pointing to nothing.
          */
         String USER_AGENT = "Mozilla/5.0";
-        
+
         BufferedReader reader = null;
         TrustManager[] trustAllCerts = new TrustManager[]{
-        new X509TrustManager() {
+            new X509TrustManager() {
 
-            @Override
-            public java.security.cert.X509Certificate[] getAcceptedIssuers()
-            {
-                return null;
+                @Override
+                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                    return null;
+                }
+
+                @Override
+                public void checkClientTrusted(java.security.cert.X509Certificate[] certs, String authType) {
+                    //No need to implement.
+                }
+
+                @Override
+                public void checkServerTrusted(java.security.cert.X509Certificate[] certs, String authType) {
+                    //No need to implement.
+                }
             }
-            @Override
-            public void checkClientTrusted(java.security.cert.X509Certificate[] certs, String authType)
-            {
-                //No need to implement.
-            }
-            @Override
-            public void checkServerTrusted(java.security.cert.X509Certificate[] certs, String authType)
-            {
-                //No need to implement.
-            }
-        }
-    };
-        
-        try 
-    {
-        SSLContext sc = SSLContext.getInstance("SSL");
-        sc.init(null, trustAllCerts, new java.security.SecureRandom());
-        HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
-    } 
-    catch (Exception e) 
-    {
-        System.out.println(e);
-    }
-        
+        };
 
         try {
-           // System.out.println("connecting started ");
+            SSLContext sc = SSLContext.getInstance("SSL");
+            sc.init(null, trustAllCerts, new java.security.SecureRandom());
+            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        try {
+            // System.out.println("connecting started ");
             // Create a URL object from the webServiceURL given
-            System.out.println("2");
             URL url = new URL(webServiceURL);
             //System.out.println("opening started ");
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
-           //  System.out.println("connecting coonected ");
+            //  System.out.println("connecting coonected ");
             con.setRequestMethod("GET");
             //con.setRequestProperty("rejectUnauthorized","false");
             con.setRequestProperty("User-Agent", USER_AGENT);
             con.connect();
             int statusCode = con.getResponseCode();
-            System.out.println("Status " + statusCode);
-            
-            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-		String inputLine;
-		StringBuffer response = new StringBuffer();
 
-                while ((inputLine = in.readLine()) != null) {
-			response.append(inputLine);
-		}
-		in.close();
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
             /*
             The BufferedReader class reads text from a character-input stream, buffering characters
             so as to provide for the efficient reading of characters, arrays, and lines.
              */
-            System.out.println("3");
 
             reader = new BufferedReader(new InputStreamReader(url.openStream()));
-            System.out.println("4");
 
             // Create a mutable sequence of characters and store its object reference into buffer
             StringBuilder buffer = new StringBuilder();
-            System.out.println("5");
 
             // Create an array of characters of size 10240
             char[] chars = new char[10240];
-            System.out.println("6");
             //reader = new BufferedReader(new InputStreamReader(url.openStream()));
 
             // Create a mutable sequence of characters and store its object reference into buffer
             //StringBuilder buffer = new StringBuilder();
-
             // Create an array of characters of size 10240
             //char[] chars = new char[10240];
-
             int numberOfCharactersRead;
             /*
             The read(chars) method of the reader object instantiated from the BufferedReader class
@@ -206,28 +192,22 @@ public final class Methods {
             If the first read on the underlying stream returns -1 to indicate end-of-file then the read(chars) method returns -1.
             Otherwise the read(chars) method returns the number of characters actually read.
              */
-            System.out.println("7");
 
             while ((numberOfCharactersRead = reader.read(chars)) != -1) {
                 buffer.append(chars, 0, numberOfCharactersRead);
             }
             //while ((numberOfCharactersRead = reader.read(chars)) != -1) {
             //    buffer.append(chars, 0, numberOfCharactersRead);
-           //}
+            //}
 
             // Return the String representation of the created buffer
             return response.toString();
-
-        } catch (Exception e) {
-            //  Block of code to handle errors
-            System.out.println(e.getMessage());
 
         } finally {
             if (reader != null) {
                 reader.close();
             }
         }
-        return "";
     }
 
 }
