@@ -132,6 +132,8 @@ public class SearchController implements Serializable {
 
         try {
             // Obtain the JSON file from the searchApiUrl
+            System.out.println("start");
+
             String searchResults = Methods.readUrlContent(insuranceAPI);
             System.out.println(searchResults);
             Example obj = (Example) Methods.getJsonObject(Example.class, searchResults);

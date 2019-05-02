@@ -62,25 +62,7 @@ Copyright © 2019 Rohit Kumar Chandaluri. All rights reserved.
 
                         <td align="right" valign="middle">
                              <!-- Search category is selected here. -->
-                             <p:autoComplete id="speciality" value="#{searchController.speciality}" completeMethod="#{searchController.specialityList}" />          
-                            <!--<p:selectOneMenu id="healthLabel" value="#{searchController.speciality}"
-                                             required="true" requiredMessage="Please Select a Health Speciality!" >
-                                <f:selectItem itemLabel="Select Health Label"   itemValue="" noSelectionOption="true"/>
-                                <f:selectItem itemLabel="Dairy-Free" itemValue="dairy-free"/>
-                                <f:selectItem itemLabel="Egg-Free" itemValue="egg-free"/>
-                                <f:selectItem itemLabel="Fat-Free" itemValue="fat-free"/>
-                                <f:selectItem itemLabel="Fish-Free" itemValue="fish-free"/>
-                                <f:selectItem itemLabel="Gluten-Free" itemValue="gluten-free"/>
-                                <f:selectItem itemLabel="Low-Sugar" itemValue="low-sugar"/>
-                                <f:selectItem itemLabel="Paleo" itemValue="paleo"/>
-                                <f:selectItem itemLabel="Peanut-Free" itemValue="peanut-free"/>
-                                <f:selectItem itemLabel="Shellfish-Free" itemValue="shellfish-free"/>
-                                <f:selectItem itemLabel="Soy-Free" itemValue="soy-free"/>
-                                <f:selectItem itemLabel="Tree-Nut-Free" itemValue="tree-nut-free"/>
-                                <f:selectItem itemLabel="Vegan" itemValue="vegan"/>
-                                <f:selectItem itemLabel="Vegetarian" itemValue="vegetarian"/>
-                                <f:selectItem itemLabel="Wheat-Free" itemValue="wheat-free"/>
-                            </p:selectOneMenu>-->
+                             <p:autoComplete id="speciality" forceSelection="true" scrollHeight="250" inputStyle="width: 200px" value="#{searchController.speciality}" completeMethod="#{searchController.specialityList}" /> 
                        </td>
                    </tr>
                    <tr>
@@ -91,22 +73,23 @@ Copyright © 2019 Rohit Kumar Chandaluri. All rights reserved.
 
                         <td align="right" valign="middle">
                              <!-- Search category is selected here. -->
-                             <p:autoComplete id="insuranceLabel" value="#{searchController.healthplans}" completeMethod="#{searchController.insuranceList}" />   
-                            <!--<p:selectOneMenu id="insuranceLabel" value="#{searchController.healthplans}"
-                                             required="true" requiredMessage="Please Select Insurance plan!" >
-                                <f:selectItem itemLabel="Select Number" itemValue="" noSelectionOption="true"/>
-                                <f:selectItem itemLabel="10" itemValue="10"/>
-                                <f:selectItem itemLabel="20" itemValue="20"/>
-                                <f:selectItem itemLabel="30" itemValue="30"/>
-                                <f:selectItem itemLabel="40" itemValue="40"/>
-                                <f:selectItem itemLabel="50" itemValue="50"/>
-                            </p:selectOneMenu>-->
+                             <p:autoComplete id="insuranceLabel" forceSelection="true" scrollHeight="250" inputStyle="width: 200px" value="#{searchController.healthplans}" completeMethod="#{searchController.insuranceList}" />   
+
+                        </td>
+                   </tr>
+                   <tr>
+                       
+                       <td align="left" valign="middle">
+                            <!-- 
+                            Number of Recipes to fetch from api
+                            -->
+                            <h:outputLabel value="Max. Number of Results:" />
                         </td>
                        
                        <td align="right" valign="middle">
                              <!-- Search category is selected here. -->
                             <p:selectOneMenu id="countLabel" value="#{searchController.numberFieldString}"
-                                             required="true" requiredMessage="Please Select Maximum Number of Doctors!" >
+                                             required="true" style="width: 200px" requiredMessage="Please Select Maximum Number of Doctors!" >
                                 <f:selectItem itemLabel="Select Number" itemValue="" noSelectionOption="true"/>
                                 <f:selectItem itemLabel="10" itemValue="10"/>
                                 <f:selectItem itemLabel="20" itemValue="20"/>
