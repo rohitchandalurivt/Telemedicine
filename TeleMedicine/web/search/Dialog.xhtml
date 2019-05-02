@@ -62,7 +62,7 @@ Copyright © 2019 Rohit Kumar Chandaluri. All rights reserved.
 
                         <td align="right" valign="middle">
                              <!-- Search category is selected here. -->
-                             <p:autoComplete id="speciality" value="#{searchController.speciality}" completeMethod="#{searchController.specialityList}" />          
+                             <p:autoComplete id="speciality" forceSelection="true" scrollHeight="250" value="#{searchController.speciality}" completeMethod="#{searchController.specialityList}" />          
                             <!--<p:selectOneMenu id="healthLabel" value="#{searchController.speciality}"
                                              required="true" requiredMessage="Please Select a Health Speciality!" >
                                 <f:selectItem itemLabel="Select Health Label"   itemValue="" noSelectionOption="true"/>
@@ -91,7 +91,7 @@ Copyright © 2019 Rohit Kumar Chandaluri. All rights reserved.
 
                         <td align="right" valign="middle">
                              <!-- Search category is selected here. -->
-                             <p:autoComplete id="insuranceLabel" value="#{searchController.healthplans}" completeMethod="#{searchController.insuranceList}" />   
+                             <p:autoComplete id="insuranceLabel" forceSelection="true" scrollHeight="250" value="#{searchController.healthplans}" completeMethod="#{searchController.insuranceList}" />   
                             <!--<p:selectOneMenu id="insuranceLabel" value="#{searchController.healthplans}"
                                              required="true" requiredMessage="Please Select Insurance plan!" >
                                 <f:selectItem itemLabel="Select Number" itemValue="" noSelectionOption="true"/>
@@ -101,6 +101,15 @@ Copyright © 2019 Rohit Kumar Chandaluri. All rights reserved.
                                 <f:selectItem itemLabel="40" itemValue="40"/>
                                 <f:selectItem itemLabel="50" itemValue="50"/>
                             </p:selectOneMenu>-->
+                        </td>
+                   </tr>
+                   <tr>
+                       
+                       <td align="left" valign="middle">
+                            <!-- 
+                            Number of Recipes to fetch from api
+                            -->
+                            <h:outputLabel value="Max. Number of Recipes:" />
                         </td>
                        
                        <td align="right" valign="middle">
