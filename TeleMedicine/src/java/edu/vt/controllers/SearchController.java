@@ -43,9 +43,9 @@ public class SearchController implements Serializable {
     public SearchController() {
         insuranceList = new ArrayList<String>();
         specialityList = new ArrayList<String>();
-//        performDoctorSearch();
+        performDoctorSearch();
         performInsauranceSearch();
-//        performpecialitySearch();
+        performpecialitySearch();
     }
 
     public String getHealthplans() {
