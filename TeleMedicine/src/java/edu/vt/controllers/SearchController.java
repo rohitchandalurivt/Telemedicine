@@ -30,7 +30,6 @@ public class SearchController implements Serializable {
      */
     // Provided by the User
     private String searchString;
-
     private String location;
     private String speciality;
     private String numberFieldString;
